@@ -17,7 +17,7 @@ class NotesBloc extends ChangeNotifier {
     final note = Note(
       text: textNoteController.text,
     );
-    bool isValidNote = checkValidNote();
+    bool isValidNote = checkValidNote(note);
     if (isValidNote) {
       _notes.add(note);
       textNoteController.clear();
@@ -27,8 +27,8 @@ class NotesBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  checkValidNote() {
-    //Whatever business logic
-    return false;
+  checkValidNote(Note note) {
+    //Whatever business logic: will check if any with exactly same value
+    return !_notes.contains(note);
   }
 }
