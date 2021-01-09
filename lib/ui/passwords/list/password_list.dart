@@ -12,9 +12,9 @@ class PasswordList extends StatelessWidget {
 
     return Container(
       child: ListView.builder(
-        itemCount: bloc.notes.length,
+        itemCount: bloc.passwords.length,
         itemBuilder: (context, index) => PasswordListElement(
-          password: bloc.notes[index],
+          password: bloc.passwords[index],
         ),
       ),
     );

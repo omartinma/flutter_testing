@@ -10,7 +10,7 @@ class PasswordForm extends StatelessWidget {
     final controller = Provider.of<PasswordsProvider>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.shouldDisplayError) {
-        final snackBar = SnackBar(content: Text('Error adding note'));
+        final snackBar = SnackBar(content: Text('Error adding password'));
         Scaffold.of(context).showSnackBar(snackBar);
         controller.shouldDisplayError = false;
       }
