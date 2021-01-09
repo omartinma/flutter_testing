@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/core/blocs/passwords_bloc.dart';
 import 'package:flutter_testing/core/models/password.dart';
+import 'package:flutter_testing/core/providers/passwords_provider.dart';
 import 'package:provider/provider.dart';
 
 class PasswordList extends StatelessWidget {
