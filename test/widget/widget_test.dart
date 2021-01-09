@@ -61,11 +61,11 @@ void main() {
       expect(find.widgetWithText(PasswordTextField, password), findsOneWidget);
 
       final widget1 = find.byType(SaveButtonPassword);
-      await tester.press(widget1);
-      await tester.pump();
+      await tester.tap(widget1);
+      //await tester.press(widget1); //press not working
+      await tester.pumpAndSettle();
 
       //We should find textfield empty and listtile with the password added
-      //TODO: TEST FAILING
       expect(find.widgetWithText(PasswordTextField, ''), findsOneWidget);
       expect(find.byType(PasswordListElement), findsOneWidget);
     });
