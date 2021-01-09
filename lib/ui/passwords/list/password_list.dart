@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_testing/core/blocs/passwords_bloc.dart';
+import 'package:flutter_testing/core/models/password.dart';
 import 'package:provider/provider.dart';
 
 class PasswordList extends StatelessWidget {
@@ -12,10 +13,23 @@ class PasswordList extends StatelessWidget {
     return Container(
       child: ListView.builder(
         itemCount: bloc.notes.length,
-        itemBuilder: (context, index) => ListTile(
-          title: Text(bloc.notes[index].text),
+        itemBuilder: (context, index) => PasswordListElement(
+          password: bloc.notes[index],
         ),
       ),
+    );
+  }
+}
+
+class PasswordListElement extends StatelessWidget {
+  const PasswordListElement({Key key, this.password}) : super(key: key);
+
+  final Password password;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(password.text),
     );
   }
 }

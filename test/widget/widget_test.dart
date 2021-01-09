@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_testing/main.dart';
 import 'package:flutter_testing/ui/passwords/create/password_form.dart';
+import 'package:flutter_testing/ui/passwords/list/password_list.dart';
 
 void main() {
   group('Find widgets', () {
@@ -56,16 +57,16 @@ void main() {
       var password = 'Oscar123';
 
       await tester.enterText(find.byType(PasswordTextField), password);
+      expect(find.byType(PasswordListElement), findsNothing);
       expect(find.widgetWithText(PasswordTextField, password), findsOneWidget);
-      expect(find.widgetWithText(ListTile, password), findsNothing);
 
       final widget1 = find.byType(SaveButtonPassword);
       await tester.press(widget1);
-      await tester.pumpAndSettle(Duration(seconds: 1));
+      await tester.pump();
 
       //We should find textfield empty and listtile with the password added
       expect(find.widgetWithText(PasswordTextField, ''), findsOneWidget);
-      expect(find.widgetWithText(ListTile, password), findsOneWidget);
+      expect(find.byType(PasswordListElement), findsOneWidget);
     });
   });
 }
