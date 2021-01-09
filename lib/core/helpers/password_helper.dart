@@ -18,4 +18,10 @@ class PasswordsHelper {
   bool hasDigits(String password) {
     return password.contains(RegExp(r'[0-9]'));
   }
+
+  bool isValidPassword(String password) {
+    return hasMinimumLength(password) &&
+        hasOneUpperCase(password) &&
+        hasDigits(password);
+  }
 }

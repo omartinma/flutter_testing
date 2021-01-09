@@ -36,4 +36,25 @@ void main() {
       expect(passwordHelper.hasMinimumLength("abc"), false);
     });
   });
+
+  group('Password must fit all the rules', () {
+    test(
+        'Password with at least 8 chracters, 1 uppercase and 1 digit will be valid',
+        () {
+      final passwordHelper = PasswordsHelper();
+      expect(passwordHelper.isValidPassword(goodPassword), true);
+    });
+    test('Password without 8 characters will not be valid', () {
+      final passwordHelper = PasswordsHelper();
+      expect(passwordHelper.isValidPassword("Oscar1"), false);
+    });
+    test('Password without 1 uppercase will not be valid', () {
+      final passwordHelper = PasswordsHelper();
+      expect(passwordHelper.isValidPassword("oscar1234"), false);
+    });
+    test('Password without 1 digit will not be valid', () {
+      final passwordHelper = PasswordsHelper();
+      expect(passwordHelper.isValidPassword("Oscarabc"), false);
+    });
+  });
 }
