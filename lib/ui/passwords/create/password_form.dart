@@ -7,7 +7,7 @@ class PasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<PasswordsBloc>(context);
+    final controller = Provider.of<PasswordsProvider>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.shouldDisplayError) {
         final snackBar = SnackBar(content: Text('Error adding note'));
@@ -37,7 +37,7 @@ class SaveButtonPassword extends StatelessWidget {
       key: Key("SaveButtonPassword"),
       child: Text("Save Password"),
       onPressed: () {
-        Provider.of<PasswordsBloc>(context, listen: false).addPassword();
+        Provider.of<PasswordsProvider>(context, listen: false).addPassword();
       },
     );
   }
@@ -54,7 +54,7 @@ class PasswordTextField extends StatelessWidget {
         border: OutlineInputBorder(),
         labelText: 'Text',
       ),
-      controller: Provider.of<PasswordsBloc>(context, listen: false)
+      controller: Provider.of<PasswordsProvider>(context, listen: false)
           .textPasswordController,
     );
   }

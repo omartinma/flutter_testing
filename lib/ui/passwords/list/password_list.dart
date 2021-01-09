@@ -8,7 +8,7 @@ class PasswordList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<PasswordsBloc>(context);
+    final bloc = Provider.of<PasswordsProvider>(context);
 
     return Container(
       child: ListView.builder(

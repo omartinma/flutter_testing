@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_testing/core/helpers/password_helper.dart';
 import 'package:flutter_testing/core/models/password.dart';
 
-class PasswordsBloc extends ChangeNotifier {
+class PasswordsProvider extends ChangeNotifier {
   List<Password> _notes;
   List<Password> get notes => _notes;
 
@@ -10,7 +10,7 @@ class PasswordsBloc extends ChangeNotifier {
 
   TextEditingController textPasswordController = TextEditingController();
 
-  PasswordsBloc() {
+  PasswordsProvider() {
     _notes = List<Password>();
   }
 
