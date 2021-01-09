@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/ui/notes/create/note_form.dart';
-import 'package:flutter_testing/ui/notes/list/note_list.dart';
+import 'package:flutter_testing/ui/passwords/create/password_form.dart';
+import 'package:flutter_testing/ui/passwords/list/password_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -11,12 +11,12 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(child: NoteForm()),
+            Expanded(child: PasswordForm()),
             Container(
               color: Colors.black,
               height: 1,
             ),
-            Expanded(child: NoteList()),
+            Expanded(child: PasswordList()),
           ],
         ),
       ),

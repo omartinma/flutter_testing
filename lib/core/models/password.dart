@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-class Note {
+class Password {
   String text;
-  Note({
+  Password({
     this.text,
   });
 
-  Note copyWith({
+  Password copyWith({
     String text,
   }) {
-    return Note(
+    return Password(
       text: text ?? this.text,
     );
   }
@@ -20,26 +20,27 @@ class Note {
     };
   }
 
-  factory Note.fromMap(Map<String, dynamic> map) {
+  factory Password.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    return Note(
+    return Password(
       text: map['text'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Note.fromJson(String source) => Note.fromMap(json.decode(source));
+  factory Password.fromJson(String source) =>
+      Password.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Note(text: $text)';
+  String toString() => 'Password(text: $text)';
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is Note && o.text == text;
+    return o is Password && o.text == text;
   }
 
   @override

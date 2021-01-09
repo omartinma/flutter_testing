@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_testing/ui/home_page.dart';
 import 'package:provider/provider.dart';
 
-import 'core/blocs/notes_bloc.dart';
+import 'core/blocs/passwords_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => NotesBloc()),
+        ChangeNotifierProvider(create: (_) => PasswordsBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

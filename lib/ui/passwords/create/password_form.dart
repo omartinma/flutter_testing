@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/core/blocs/notes_bloc.dart';
+import 'package:flutter_testing/core/blocs/passwords_bloc.dart';
 import 'package:provider/provider.dart';
 
-class NoteForm extends StatelessWidget {
-  const NoteForm({Key key}) : super(key: key);
+class PasswordForm extends StatelessWidget {
+  const PasswordForm({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<NotesBloc>(context);
+    final controller = Provider.of<PasswordsBloc>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.shouldDisplayError) {
         final snackBar = SnackBar(content: Text('Error adding note'));
@@ -25,12 +25,12 @@ class NoteForm extends StatelessWidget {
               border: OutlineInputBorder(),
               labelText: 'Text',
             ),
-            controller: controller.textNoteController,
+            controller: controller.textPasswordController,
           ),
           RaisedButton(
-            child: Text("Create Note"),
+            child: Text("Save Password"),
             onPressed: () {
-              Provider.of<NotesBloc>(context, listen: false).addNote();
+              Provider.of<PasswordsBloc>(context, listen: false).addPassword();
             },
           ),
         ],

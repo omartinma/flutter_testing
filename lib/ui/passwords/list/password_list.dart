@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/core/blocs/notes_bloc.dart';
+import 'package:flutter_testing/core/blocs/passwords_bloc.dart';
 import 'package:provider/provider.dart';
 
-class NoteList extends StatelessWidget {
-  const NoteList({Key key}) : super(key: key);
+class PasswordList extends StatelessWidget {
+  const PasswordList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<NotesBloc>(context);
+    final bloc = Provider.of<PasswordsBloc>(context);
 
     return Container(
       child: ListView.builder(
