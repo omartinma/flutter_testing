@@ -57,7 +57,7 @@ void main() {
       var password = 'Oscar123';
 
       await tester.enterText(find.byType(PasswordTextField), password);
-      expect(find.byType(PasswordListElement), findsNothing);
+      expect(find.byType(PasswordChip), findsNothing);
       expect(find.widgetWithText(PasswordTextField, password), findsOneWidget);
 
       final widget1 = find.byType(SaveButtonPassword);
@@ -67,7 +67,7 @@ void main() {
 
       //We should find textfield empty and listtile with the password added
       expect(find.widgetWithText(PasswordTextField, ''), findsOneWidget);
-      expect(find.byType(PasswordListElement), findsOneWidget);
+      expect(find.byType(PasswordChip), findsOneWidget);
     });
   });
 }

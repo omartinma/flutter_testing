@@ -34,16 +34,15 @@ void main() {
       //Init
       app.main();
       await tester.pumpAndSettle();
-
       //Input password
       final newPassword = 'Oscar123';
       await _inputPassword(newPassword, tester);
       expect(find.text(newPassword), findsOneWidget);
 
       //Click on save password button
-      expect(find.byType(PasswordListElement), findsNothing);
+      expect(find.byType(PasswordChip), findsNothing);
       await _clickSavePassword(tester);
-      expect(find.byType(PasswordListElement), findsOneWidget);
+      expect(find.byType(PasswordChip), findsOneWidget);
     });
 
     testWidgets('Dont create a new password if it is not valid',
@@ -58,9 +57,9 @@ void main() {
       expect(find.text(newPassword), findsOneWidget);
 
       //Click on save password button
-      expect(find.byType(PasswordListElement), findsNothing);
+      expect(find.byType(PasswordChip), findsNothing);
       await _clickSavePassword(tester);
-      expect(find.byType(PasswordListElement), findsNothing);
+      expect(find.byType(PasswordChip), findsNothing);
     });
   });
 }

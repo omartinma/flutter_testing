@@ -1,5 +1,4 @@
 // Import the test package and Counter class
-import 'package:flutter_testing/core/helpers/password_helper.dart';
 import 'package:flutter_testing/core/models/password.dart';
 import 'package:flutter_testing/core/providers/passwords_provider.dart';
 import 'package:test/test.dart';
