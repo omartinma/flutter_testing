@@ -22,7 +22,7 @@ void main() {
     });
     test('Password with no digits will not be valid', () {
       final passwordHelper = PasswordsHelper();
-      expect(passwordHelper.hasMinimumLength("abc"), false);
+      expect(passwordHelper.hasDigits("abc"), false);
     });
   });
 
