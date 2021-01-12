@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/core/providers/passwords_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_testing/core/blocs/passwords/passwords_bloc.dart';
 
 class PasswordForm extends StatelessWidget {
   const PasswordForm({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<PasswordsProvider>(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (controller.shouldDisplayError) {
-        final snackBar = SnackBar(content: Text('Error adding password'));
-        Scaffold.of(context).showSnackBar(snackBar);
-        controller.shouldDisplayError = false;
-      }
-    });
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          PasswordTextField(),
-          SaveButtonPassword(),
-          PasswordInstructions(),
-        ],
+    return BlocListener<PasswordsBloc, PasswordsState>(
+      listener: (context, state) {
+        if (state is PasswordError) {
+          final snackBar = SnackBar(content: Text('Error adding password'));
+          Scaffold.of(context).showSnackBar(snackBar);
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PasswordTextField(),
+            SaveButtonPassword(),
+            PasswordInstructions(),
+          ],
+        ),
       ),
     );
   }
@@ -40,28 +40,47 @@ class SaveButtonPassword extends StatelessWidget {
       textColor: Colors.white,
       child: Text("Save Password"),
       onPressed: () {
-        Provider.of<PasswordsProvider>(context, listen: false).addPassword();
+        BlocProvider.of<PasswordsBloc>(context).add(CreatePassword());
       },
     );
   }
 }
 
-class PasswordTextField extends StatelessWidget {
+class PasswordTextField extends StatefulWidget {
   const PasswordTextField({Key key}) : super(key: key);
 
   @override
+  _PasswordTextFieldState createState() => _PasswordTextFieldState();
+}
+
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  TextEditingController _textEditingController;
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<PasswordsProvider>(context, listen: false);
-    return TextField(
-      key: Key("PasswordTextField"),
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Text',
-      ),
-      onChanged: (value) {
-        provider.changePassword(value);
+    return BlocListener<PasswordsBloc, PasswordsState>(
+      listener: (context, state) {
+        if (state is PasswordSaved) {
+          _textEditingController.clear();
+        }
       },
-      controller: TextEditingController(text: provider.passWord),
+      child: TextField(
+        key: Key("PasswordTextField"),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Text',
+        ),
+        onChanged: (value) {
+          BlocProvider.of<PasswordsBloc>(context)
+              .add(ChangePassword(newPassword: value));
+        },
+        controller: _textEditingController,
+      ),
     );
   }
 }

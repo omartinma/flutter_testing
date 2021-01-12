@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_testing/core/blocs/passwords/passwords_bloc.dart';
 import 'package:flutter_testing/core/models/password.dart';
-import 'package:flutter_testing/core/providers/passwords_provider.dart';
-import 'package:provider/provider.dart';
 
 class PasswordList extends StatelessWidget {
   const PasswordList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<PasswordsProvider>(context);
-    final passwords = bloc.passwords;
-    return Wrap(
-      children: [
-        for (var i = 0; i < passwords.length; i++)
-          PasswordChip(
-            password: passwords[i],
-          )
-      ],
+    return BlocBuilder<PasswordsBloc, PasswordsState>(
+      buildWhen: (previous, current) => current is PasswordSaved,
+      builder: (context, state) {
+        final passwords = state is PasswordSaved ? state.passwords : [];
+        return Wrap(
+          children: [
+            for (var i = 0; i < passwords.length; i++)
+              PasswordChip(
+                password: passwords[i],
+              )
+          ],
+        );
+      },
     );
   }
 }

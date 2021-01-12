@@ -23,8 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.3.2+3
-  get_it: ^5.0.3
+  flutter_bloc: ^6.1.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +38,7 @@ dev_dependencies:
   test:
   flutter_driver:
     sdk: flutter
+  bloc_test: ^7.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
