@@ -16,7 +16,10 @@ class HomePage extends StatelessWidget {
               color: Colors.black,
               height: 1,
             ),
-            Expanded(child: PasswordList()),
+            Expanded(
+              child: PasswordList(),
+              flex: 2,
+            ),
           ],
         ),
       ),

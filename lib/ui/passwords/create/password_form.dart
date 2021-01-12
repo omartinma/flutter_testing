@@ -22,6 +22,7 @@ class PasswordForm extends StatelessWidget {
         children: [
           PasswordTextField(),
           SaveButtonPassword(),
+          PasswordInstructions(),
         ],
       ),
     );
@@ -35,6 +36,8 @@ class SaveButtonPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       key: Key("SaveButtonPassword"),
+      color: Colors.blue,
+      textColor: Colors.white,
       child: Text("Save Password"),
       onPressed: () {
         Provider.of<PasswordsProvider>(context, listen: false).addPassword();
@@ -56,6 +59,23 @@ class PasswordTextField extends StatelessWidget {
       ),
       controller: Provider.of<PasswordsProvider>(context, listen: false)
           .textPasswordController,
+    );
+  }
+}
+
+class PasswordInstructions extends StatelessWidget {
+  const PasswordInstructions({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text("Must have 8 characters"),
+          Text("Must have at least 1 digit"),
+          Text("Must have at least 1 uppercase"),
+        ],
+      ),
     );
   }
 }

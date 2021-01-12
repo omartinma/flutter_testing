@@ -9,14 +9,14 @@ class PasswordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<PasswordsProvider>(context);
-
-    return Container(
-      child: ListView.builder(
-        itemCount: bloc.passwords.length,
-        itemBuilder: (context, index) => PasswordListElement(
-          password: bloc.passwords[index],
-        ),
-      ),
+    final passwords = bloc.passwords;
+    return Wrap(
+      children: [
+        for (var i = 0; i < passwords.length; i++)
+          PasswordChip(
+            password: passwords[i],
+          )
+      ],
     );
   }
 }
@@ -30,6 +30,22 @@ class PasswordListElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(password.text),
+    );
+  }
+}
+
+class PasswordChip extends StatelessWidget {
+  const PasswordChip({Key key, this.password}) : super(key: key);
+  final Password password;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Chip(
+        label: Text(password.text),
+        elevation: 2,
+      ),
     );
   }
 }
