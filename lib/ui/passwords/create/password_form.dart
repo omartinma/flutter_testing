@@ -51,14 +51,17 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PasswordsProvider>(context, listen: false);
     return TextField(
       key: Key("PasswordTextField"),
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Text',
       ),
-      controller: Provider.of<PasswordsProvider>(context, listen: false)
-          .textPasswordController,
+      onChanged: (value) {
+        provider.changePassword(value);
+      },
+      controller: TextEditingController(text: provider.passWord),
     );
   }
 }

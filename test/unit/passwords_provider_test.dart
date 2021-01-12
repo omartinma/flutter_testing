@@ -9,14 +9,14 @@ void main() {
   group('Add password', () {
     test('Valid password should be saved', () {
       final passwordProvider = PasswordsProvider();
-      passwordProvider.textPasswordController.text = goodPassword;
+      passwordProvider.changePassword(goodPassword);
       passwordProvider.addPassword();
       expect(passwordProvider.passwords.contains(Password(text: goodPassword)),
           true);
     });
     test('Invalid password should not be saved', () {
       final passwordProvider = PasswordsProvider();
-      passwordProvider.textPasswordController.text = wrongPassword;
+      passwordProvider.changePassword(wrongPassword);
       passwordProvider.addPassword();
       expect(passwordProvider.passwords.contains(Password(text: goodPassword)),
           false);

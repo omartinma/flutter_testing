@@ -5,10 +5,10 @@ import 'package:flutter_testing/core/models/password.dart';
 class PasswordsProvider extends ChangeNotifier {
   List<Password> _passwords;
   List<Password> get passwords => _passwords;
+  String _password;
+  String get passWord => _password;
 
   bool shouldDisplayError = false;
-
-  TextEditingController textPasswordController = TextEditingController();
 
   PasswordsProvider() {
     _passwords = List<Password>();
@@ -16,15 +16,19 @@ class PasswordsProvider extends ChangeNotifier {
 
   void addPassword() {
     final password = Password(
-      text: textPasswordController.text,
+      text: passWord,
     );
     bool isValidPassword = PasswordsHelper().isValidPassword(password.text);
     if (isValidPassword) {
       _passwords.add(password);
-      textPasswordController.clear();
+      changePassword(null);
     } else {
       shouldDisplayError = true;
     }
     notifyListeners();
+  }
+
+  void changePassword(String newPassword) {
+    _password = newPassword;
   }
 }
