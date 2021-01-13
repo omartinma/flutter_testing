@@ -5,10 +5,8 @@ abstract class PasswordsEvent {}
 
 class ClearPassword extends PasswordsEvent {}
 
-class ChangePassword extends PasswordsEvent {
+class CreatePassword extends PasswordsEvent {
   final String newPassword;
 
-  ChangePassword({this.newPassword});
+  CreatePassword({@required this.newPassword});
 }
-
-class CreatePassword extends PasswordsEvent {}

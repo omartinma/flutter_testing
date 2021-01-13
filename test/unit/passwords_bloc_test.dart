@@ -5,36 +5,25 @@ import 'package:bloc_test/bloc_test.dart';
 
 void main() {
   group('Passwords Bloc', () {
-    PasswordsBloc passwordsBloc;
-    final String goodPassword = "Password1";
-    final String wrongPassword = "oscar123";
-
-    setUp(() {
-      passwordsBloc = PasswordsBloc();
-    });
-
     blocTest('first test',
         build: () => PasswordsBloc(),
-        act: (bloc) => bloc.add(ChangePassword(newPassword: 'Chicago123')),
+        skip: 0,
+        act: (bloc) {
+          bloc.add(CreatePassword(newPassword: "Oscar123"));
+          bloc.add(CreatePassword(newPassword: "Oscar1234"));
+        },
         expect: [
-          PasswordsInitial(),
+          PasswordLoadSuccess(
+            passwords: [
+              Password(text: "Oscar123"),
+            ],
+          ),
+          PasswordLoadSuccess(
+            passwords: [
+              Password(text: "Oscar123"),
+              Password(text: "Oscar1234"),
+            ],
+          ),
         ]);
-    /*  test('Valid password should be saved', () {
-      //expect(passwordsBloc.state, PasswordsInitial);
-      final expectedResponse = [
-        PasswordsInitial(),
-        PasswordSaved(),
-      ];
-
-      passwordsBloc.add(ChangePassword(newPassword: goodPassword));
-      passwordsBloc.add(CreatePassword());
-      passwordsBloc.add(ChangePassword(newPassword: wrongPassword));
-
-      //expectLater(passwordsBloc, emitsInOrder(expectedResponse));
-
-      expect(
-          passwordsBloc.state.passwords.contains(Password(text: goodPassword)),
-          true);
-    });*/
   });
 }

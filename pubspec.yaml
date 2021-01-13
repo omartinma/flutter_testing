@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^6.1.1
+  equatable: ^1.1.1
 
 
 

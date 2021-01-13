@@ -9,9 +9,9 @@ class PasswordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PasswordsBloc, PasswordsState>(
-      buildWhen: (previous, current) => current is PasswordSaved,
+      buildWhen: (previous, current) => current is PasswordLoadSuccess,
       builder: (context, state) {
-        final passwords = state is PasswordSaved ? state.passwords : [];
+        final passwords = state is PasswordLoadSuccess ? state.passwords : [];
         return Wrap(
           children: [
             for (var i = 0; i < passwords.length; i++)
