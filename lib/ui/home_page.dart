@@ -11,7 +11,9 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(child: PasswordForm()),
+            Expanded(
+              child: PasswordForm(),
+            ),
             Container(
               color: Colors.black,
               height: 1,

@@ -14,6 +14,6 @@ class PasswordLoadSuccess extends PasswordsState {
   PasswordLoadSuccess({List<Password> passwords}) : super(passwords: passwords);
 }
 
-class PasswordError extends PasswordsState {
-  PasswordError({List<Password> passwords}) : super(passwords: passwords);
+class PasswordLoadFailure extends PasswordsState {
+  PasswordLoadFailure({List<Password> passwords}) : super(passwords: passwords);
 }

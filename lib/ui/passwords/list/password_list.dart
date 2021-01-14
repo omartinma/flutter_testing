@@ -11,7 +11,7 @@ class PasswordList extends StatelessWidget {
     return BlocBuilder<PasswordsBloc, PasswordsState>(
       buildWhen: (previous, current) => current is PasswordLoadSuccess,
       builder: (context, state) {
-        final passwords = state is PasswordLoadSuccess ? state.passwords : [];
+        final passwords = state.passwords;
         return Wrap(
           children: [
             for (var i = 0; i < passwords.length; i++)
@@ -21,19 +21,6 @@ class PasswordList extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-class PasswordListElement extends StatelessWidget {
-  const PasswordListElement({Key key, this.password}) : super(key: key);
-
-  final Password password;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(password.text),
     );
   }
 }

@@ -5,12 +5,15 @@ import 'package:bloc_test/bloc_test.dart';
 
 void main() {
   group('Passwords Bloc', () {
-    blocTest('Creating 2 passwords',
+    blocTest('2 valid passwords should be created',
         build: () => PasswordsBloc(),
-        skip: 0,
         act: (bloc) {
-          bloc.add(CreatePassword(newPassword: "Oscar123"));
-          bloc.add(CreatePassword(newPassword: "Oscar1234"));
+          bloc.add(
+            PasswordSaveTried(newPassword: "Oscar123"),
+          );
+          bloc.add(
+            PasswordSaveTried(newPassword: "Oscar1234"),
+          );
         },
         expect: [
           PasswordLoadSuccess(
@@ -23,6 +26,34 @@ void main() {
               Password(text: "Oscar123"),
               Password(text: "Oscar1234"),
             ],
+          ),
+        ]);
+
+    blocTest('Invalid password should not be added',
+        build: () => PasswordsBloc(),
+        act: (bloc) {
+          bloc.add(
+            PasswordSaveTried(newPassword: "OscarMartin"),
+          );
+        },
+        expect: [
+          PasswordLoadFailure(
+            passwords: [],
+          ),
+        ]);
+    blocTest('Invalid passwords should not be added',
+        build: () => PasswordsBloc(),
+        act: (bloc) {
+          bloc.add(
+            PasswordSaveTried(newPassword: "OscarMartin"),
+          );
+          bloc.add(
+            PasswordSaveTried(newPassword: "oscarMartin"),
+          );
+        },
+        expect: [
+          PasswordLoadFailure(
+            passwords: [],
           ),
         ]);
   });

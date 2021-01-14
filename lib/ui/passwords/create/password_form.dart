@@ -14,7 +14,6 @@ class _PasswordFormState extends State<PasswordForm> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _textEditingController = TextEditingController();
   }
@@ -23,7 +22,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     return BlocListener<PasswordsBloc, PasswordsState>(
       listener: (context, state) {
-        if (state is PasswordError) {
+        if (state is PasswordLoadFailure) {
           final snackBar = SnackBar(content: Text('Error adding password'));
           Scaffold.of(context).showSnackBar(snackBar);
         }
@@ -62,7 +61,7 @@ class SaveButtonPassword extends StatelessWidget {
       child: Text("Save Password"),
       onPressed: () {
         BlocProvider.of<PasswordsBloc>(context)
-            .add(CreatePassword(newPassword: textEditingController.text));
+            .add(PasswordSaveTried(newPassword: textEditingController.text));
       },
     );
   }

@@ -16,7 +16,7 @@ class PasswordsBloc extends Bloc<PasswordsEvent, PasswordsState> {
   Stream<PasswordsState> mapEventToState(
     PasswordsEvent event,
   ) async* {
-    if (event is CreatePassword) {
+    if (event is PasswordSaveTried) {
       final currentPassword = event.newPassword;
       bool isValidPassword = PasswordsHelper().isValidPassword(currentPassword);
       if (isValidPassword) {
@@ -24,7 +24,7 @@ class PasswordsBloc extends Bloc<PasswordsEvent, PasswordsState> {
         passwords.add(Password(text: currentPassword));
         yield PasswordLoadSuccess(passwords: passwords);
       } else {
-        yield PasswordError(passwords: state.passwords);
+        yield PasswordLoadFailure(passwords: state.passwords);
       }
     }
   }
