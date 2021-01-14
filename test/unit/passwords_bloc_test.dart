@@ -5,7 +5,7 @@ import 'package:bloc_test/bloc_test.dart';
 
 void main() {
   group('Passwords Bloc', () {
-    blocTest('first test',
+    blocTest('Creating 2 passwords',
         build: () => PasswordsBloc(),
         skip: 0,
         act: (bloc) {
